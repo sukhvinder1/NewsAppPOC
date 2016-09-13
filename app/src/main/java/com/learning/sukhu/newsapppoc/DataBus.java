@@ -6,5 +6,5 @@ import java.util.List;
  * Created by sukhu on 2016-09-12.
  */
 public interface DataBus {
-    void processData(List<Sources> sources);
+    void processedData(List<Sources> sources);
 }
