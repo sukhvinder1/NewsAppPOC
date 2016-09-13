@@ -3,6 +3,7 @@ package com.learning.sukhu.newsapppoc.Json;
 import android.net.Uri;
 import android.util.Log;
 
+import com.learning.sukhu.newsapppoc.DataBus;
 import com.learning.sukhu.newsapppoc.DownloadStatus;
 import com.learning.sukhu.newsapppoc.Sources;
 
@@ -20,10 +21,12 @@ public class GetJsonData extends GetRawJsonData {
     private String LOG_TAG = "Sukh_tag_GetJsonData";
     private List<Sources> sourcesList;
     private Uri destinationUri;
+    private DataBus dataBus;
 
-    public GetJsonData(String url){
+    public GetJsonData(String url, DataBus dataBus){
         super(null);
         sourcesList = new ArrayList<Sources>();
+        this.dataBus = dataBus;
         createUri(url);
     }
 
@@ -81,11 +84,7 @@ public class GetJsonData extends GetRawJsonData {
 
         protected void onPostExecute(String webData) {
             super.onPostExecute(webData);
-            processData();
-
-            for(Sources source : sourcesList){
-                Log.v(LOG_TAG, source.toString());
-            }
+            dataBus.processData(processData());
         }
 
         protected String doInBackground(String... params) {

@@ -5,13 +5,18 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import com.learning.sukhu.newsapppoc.Json.GetJsonData;
 
-public class MainActivity extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class MainActivity extends AppCompatActivity implements DataBus{
     private GetJsonData jsonData;
+    private List<Sources> sourcesData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +30,9 @@ public class MainActivity extends AppCompatActivity {
     public void onStart(){
         super.onStart();
         if(isNetworkAvailable()){
-            jsonData = new GetJsonData("Hello");
+            jsonData = new GetJsonData("Hello", this);
             jsonData.execute();
+            sourcesData = new ArrayList<Sources>();
         }else {
             Toast.makeText(this,"Sorry!! I don't have Internet Power Right now !", Toast.LENGTH_LONG).show();
         }
@@ -46,5 +52,13 @@ public class MainActivity extends AppCompatActivity {
     public void onPause(){
         super.onPause();
         jsonData = null;
+    }
+
+    @Override
+    public void processData(List<Sources> sources) {
+        this.sourcesData = sources;
+        for(Sources source : sources){
+            Log.v("Main_Activity_tag", source.toString());
+        }
     }
 }
