@@ -17,6 +17,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements DataBus{
     private GetJsonData jsonData;
     private List<Sources> sourcesData;
+    private String LOG_TAG = "Sukh_Tag_MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +41,9 @@ public class MainActivity extends AppCompatActivity implements DataBus{
 
     public void onTouch(View v){
         Toast.makeText(this,"Hello", Toast.LENGTH_LONG).show();
+        for(Sources source : sourcesData){
+            Log.v(LOG_TAG, source.toString());
+        }
     }
 
     private boolean isNetworkAvailable() {
@@ -56,9 +60,7 @@ public class MainActivity extends AppCompatActivity implements DataBus{
 
     @Override
     public void processData(List<Sources> sources) {
+        Log.v(LOG_TAG, "transferring Data");
         this.sourcesData = sources;
-        for(Sources source : sources){
-            Log.v("Main_Activity_tag", source.toString());
-        }
     }
 }
