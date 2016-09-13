@@ -84,7 +84,7 @@ public class GetJsonData extends GetRawJsonData {
 
         protected void onPostExecute(String webData) {
             super.onPostExecute(webData);
-            dataBus.processData(processData());
+            dataBus.processedData(processData());
         }
 
         protected String doInBackground(String... params) {
