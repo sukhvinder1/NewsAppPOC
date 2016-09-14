@@ -40,10 +40,10 @@ public class CustomListAdapter extends ArrayAdapter<Sources> {
         }
         Sources sources = getItem(position);
 
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.imageViewProduct);
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView);
         Picasso.with(context).load(sources.getUrlSize()).into(imageView);
 
-        TextView txtName = (TextView) convertView.findViewById(R.id.txtName);
+        TextView txtName = (TextView) convertView.findViewById(R.id.sourcesList);
         txtName.setText(sources.getName());
 
         return convertView;
