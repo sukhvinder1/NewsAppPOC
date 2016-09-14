@@ -1,6 +1,5 @@
 package com.learning.sukhu.newsapppoc;
 
-import android.app.ListActivity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -9,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -24,14 +22,19 @@ public class MainActivity extends AppCompatActivity implements DataBus{
     private String LOG_TAG = "Sukh_Tag_MainActivity";
     private ListView listView;
     private String[] sourcesList;
+    private ArrayList<Sources> arrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         Log.v(LOG_TAG, "onCreate");
         listView = (ListView) findViewById(R.id.listView);
+
         sourcesData = new ArrayList<Sources>();
+        arrayList = new ArrayList<>();
+
         if(isNetworkAvailable()){
             jsonData = new GetJsonData("Hello", this);
             jsonData.execute();
@@ -68,12 +71,14 @@ public class MainActivity extends AppCompatActivity implements DataBus{
         sourcesList = new String[sourcesData.size()];
         int i=0;
         for(Sources source : sourcesData){
-            Log.v(LOG_TAG, source.getName());
+            //Log.v(LOG_TAG, source.getName());
             sourcesList[i] = source.getName();
+            arrayList.add(source);
             i++;
         }
-        ArrayAdapter<String> myArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, sourcesList);
-        listView.setAdapter(myArrayAdapter);
+        //ArrayAdapter<String> myArrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, sourcesList);
+        CustomListAdapter adapter = new CustomListAdapter(getApplicationContext(), R.layout.custom_list_layout, arrayList);
+        listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
