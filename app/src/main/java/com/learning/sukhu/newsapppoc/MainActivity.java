@@ -1,5 +1,6 @@
 package com.learning.sukhu.newsapppoc;
 
+import android.app.ListActivity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements DataBus{
         sourcesList = new String[sourcesData.size()];
         int i=0;
         for(Sources source : sourcesData){
-            //Log.v(LOG_TAG, source.getName());
+            Log.v(LOG_TAG, source.getName());
             sourcesList[i] = source.getName();
             arrayList.add(source);
             i++;
