@@ -1,3 +1,4 @@
+GRID/LIST VIEW
 # Revert changes to modified files.
 git reset --hard
 
