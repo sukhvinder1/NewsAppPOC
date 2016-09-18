@@ -1,11 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:windowActionBar="false"
-    tools:context="com.learning.sukhu.newsapppoc.MainActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".MainActivity" >
 
     <ListView
         android:layout_width="match_parent"
@@ -14,7 +12,10 @@
         android:layout_weight="1" />
 
     <GridView
+        android:id="@+id/gridView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/gridView" />
-</LinearLayout>
+        android:layout_alignParentLeft="true"
+        android:numColumns="3" >
+    </GridView>
+</RelativeLayout>

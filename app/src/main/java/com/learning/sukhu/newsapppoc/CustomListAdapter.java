@@ -21,22 +21,26 @@ public class CustomListAdapter extends ArrayAdapter<Sources> {
     ArrayList<Sources> sources;
     Context context;
     int resource;
+    String pref;
 
-    public CustomListAdapter(Context context, int resource, ArrayList<Sources> sources) {
+    public CustomListAdapter(Context context, int resource, ArrayList<Sources> sources, String pref) {
         super(context, resource, sources);
         this.sources = sources;
         this.context = context;
         this.resource = resource;
+        this.pref = pref;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
+        LayoutInflater layoutInflater = (LayoutInflater) getContext()
+                .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         if (convertView == null){
-            LayoutInflater layoutInflater = (LayoutInflater) getContext()
-                    .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.custom_list_layout, null, true);
-
+            if(pref.equals("GRID")){
+                convertView = layoutInflater.inflate(R.layout.custome_grid_layout, null, true);
+            }else{
+                convertView = layoutInflater.inflate(R.layout.custom_list_layout, null, true);
+            }
         }
         Sources sources = getItem(position);
 
