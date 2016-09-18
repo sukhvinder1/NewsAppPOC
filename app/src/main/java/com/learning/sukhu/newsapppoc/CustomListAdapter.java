@@ -35,7 +35,7 @@ public class CustomListAdapter extends ArrayAdapter<Sources> {
         if (convertView == null){
             LayoutInflater layoutInflater = (LayoutInflater) getContext()
                     .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.custom_list_layout, null, true);
+            convertView = layoutInflater.inflate(R.layout.custome_grid_layout, null, true);
 
         }
         Sources sources = getItem(position);
@@ -43,7 +43,7 @@ public class CustomListAdapter extends ArrayAdapter<Sources> {
         ImageView imageView = (ImageView) convertView.findViewById(R.id.imageView);
         Picasso.with(context).load(sources.getUrlSize()).into(imageView);
 
-        TextView txtName = (TextView) convertView.findViewById(R.id.sourcesList);
+        TextView txtName = (TextView) convertView.findViewById(R.id.sourceList);
         txtName.setText(sources.getName());
 
         return convertView;

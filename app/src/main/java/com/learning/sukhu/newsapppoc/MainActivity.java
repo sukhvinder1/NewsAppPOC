@@ -7,9 +7,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.GridView;
 import android.widget.Toast;
 
 import com.learning.sukhu.newsapppoc.Json.GetJsonData;
@@ -20,7 +19,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements DataBus{
     private GetJsonData jsonData;
     private String LOG_TAG = "Sukh_Tag_MainActivity";
-    private ListView listView;
+    private GridView listView;
     private ArrayList<Sources> sourceList;
 
     @Override
@@ -33,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements DataBus{
     protected void onStart(){
         super.onStart();
         //initializing all the variables
-        listView = (ListView) findViewById(R.id.listView);
+        listView = (GridView) findViewById(R.id.gridView);
         sourceList = new ArrayList<>();
 
         //checking if network is available
@@ -65,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements DataBus{
         sourceList.addAll(sources);
         //custom adapter
         CustomListAdapter adapter = new CustomListAdapter(
-                getApplicationContext(), R.layout.custom_list_layout, sourceList);
+                getApplicationContext(), R.layout.custome_grid_layout, sourceList);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
