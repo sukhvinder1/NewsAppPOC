@@ -1,4 +1,4 @@
-GridListViewPOC
+ListViewPOC
 # Revert changes to modified files.
 git reset --hard
 
